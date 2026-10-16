@@ -1,0 +1,472 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080c18">
+  <meta name="description" content="Halaman login modern by zharWeb">
+  <title>Login — zharWeb</title>
+
+  <link rel="icon" href="https://i.imgur.com/SpSkvE8.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #080c18;
+      --card: rgba(17, 24, 43, 0.88);
+      --primary: #6366f1;
+      --secondary: #8b5cf6;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --border: rgba(148, 163, 184, 0.16);
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background:
+        radial-gradient(ellipse at 15% 15%, #312e8138, transparent 40%),
+        radial-gradient(ellipse at 85% 85%, #7c3aed26, transparent 40%),
+        var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .orb {
+      position: fixed;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: .35;
+      pointer-events: none;
+    }
+
+    .orb.one {
+      background: #6366f1;
+      top: -80px;
+      left: -80px;
+    }
+
+    .orb.two {
+      background: #9333ea;
+      bottom: -80px;
+      right: -80px;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 430px;
+      position: relative;
+      z-index: 1;
+      animation: appear .7s ease both;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      margin-bottom: 28px;
+    }
+
+    .brand-icon {
+      width: 45px;
+      height: 45px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      font-size: 21px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      box-shadow: 0 8px 25px #6366f14a;
+    }
+
+    .brand-name {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -.8px;
+    }
+
+    .brand-name span {
+      color: #818cf8;
+    }
+
+    .login-card {
+      padding: 36px 30px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 25px;
+      box-shadow: 0 25px 80px #00000045;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .heading {
+      margin-bottom: 30px;
+    }
+
+    .heading h1 {
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: -.8px;
+      margin-bottom: 10px;
+    }
+
+    .heading p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .form-group {
+      margin-bottom: 21px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #e2e8f0;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-wrap > i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #818cf8;
+      font-size: 15px;
+    }
+
+    .input-wrap input {
+      width: 100%;
+      height: 51px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #080c18a8;
+      color: var(--text);
+      outline: none;
+      padding: 0 45px;
+      font-family: inherit;
+      font-size: 13px;
+      transition: .25s;
+    }
+
+    .input-wrap input::placeholder {
+      color: #64748b;
+    }
+
+    .input-wrap input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px #6366f122;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 5px;
+      font-size: 14px;
+    }
+
+    .toggle-password:hover {
+      color: white;
+    }
+
+    .login-btn {
+      width: 100%;
+      height: 51px;
+      border: none;
+      border-radius: 12px;
+      margin-top: 5px;
+      background: linear-gradient(110deg, var(--primary), var(--secondary));
+      color: white;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 25px #6366f133;
+      transition: transform .2s, filter .2s;
+    }
+    
+    .back-btn {
+      width: 100%;
+      height: 51px;
+      border: none;
+      border-radius: 12px;
+      margin-top: 10px;
+      background: linear-gradient(110deg, #d21515, #990b0b);
+      color: white;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 25px #f1636344;
+      transition: transform .2s, filter .2s;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.12);
+    }
+
+    .login-btn:active {
+      transform: scale(.98);
+    }
+
+    .login-btn i {
+      margin-right: 8px;
+    }
+    
+    .back-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.12);
+    }
+
+    .back-btn:active {
+      transform: scale(.98);
+    }
+
+    .back-btn i {
+      margin-right: 8px;
+    }
+
+    .message {
+      display: none;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      margin-top: 16px;
+      line-height: 1.5;
+    }
+
+    .message.error {
+      display: block;
+      background: #ef44441a;
+      color: #fca5a5;
+      border: 1px solid #ef444433;
+    }
+
+    .message.success {
+      display: block;
+      background: #22c55e1a;
+      color: #86efac;
+      border: 1px solid #22c55e33;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 11px;
+      color: #64748b;
+      line-height: 1.8;
+    }
+
+    .footer i {
+      color: #818cf8;
+      margin-right: 5px;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 18px;
+      }
+
+      .login-card {
+        padding: 30px 22px;
+        border-radius: 21px;
+      }
+
+      .heading h1 {
+        font-size: 24px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+
+  <main class="login-container">
+    <div class="brand">
+      <div class="brand-icon">
+        <i class="fa-solid fa-user"></i>
+      </div>
+      <marquee>
+      <div class="brand-name">RPL<span> - TP</span> | Login To <span>Input Data</span></div></marquee>
+    </div>
+
+    <section class="login-card">
+      <div class="heading">
+        <h1>Selamat datang!</h1>
+        <p>Silakan login untuk melanjutkan ke halaman aplikasi Anda.</p>
+      </div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-user"></i>
+            <input
+              type="text"
+              id="username"
+              placeholder="Masukkan username"
+              autocomplete="username"
+              required
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-lock"></i>
+            <input
+              type="password"
+              id="password"
+              placeholder="Masukkan password"
+              autocomplete="current-password"
+              required
+            >
+            <button
+              type="button"
+              class="toggle-password"
+              id="togglePassword"
+              aria-label="Tampilkan password"
+            >
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="login-btn" id="loginBtn">
+          <i class="fa-solid fa-right-to-bracket"></i>
+          Login Sekarang
+        </button>
+        
+        <button onclick="location.href='home_p.html'" class="back-btn">
+          <i class="fa-solid fa-arrow-left"></i>
+          Kembali Ke Home
+        </button>
+
+        <div id="message" class="message" role="status" aria-live="polite"></div>
+      </form>
+    </section>
+
+    <div class="footer">
+      <i class="fa-solid fa-shield-halved"></i>
+      Halaman login by zharWeb
+      <br>
+      &copy; <span id="year"></span> zharWeb. Semua Hak Cipta Dilindungi.
+    </div>
+  </main>
+
+  <script>
+    const USERNAME_BENAR = "RPL-TP";
+    const PASSWORD_BENAR = "2027";
+    const HALAMAN_TUJUAN = "input_data_p.html";
+
+    // ========================================
+    // LOGIN
+    // ========================================
+
+    const form = document.getElementById("loginForm");
+    const username = document.getElementById("username");
+    const password = document.getElementById("password");
+    const message = document.getElementById("message");
+    const loginBtn = document.getElementById("loginBtn");
+    const togglePassword = document.getElementById("togglePassword");
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    togglePassword.addEventListener("click", function () {
+      const sedangTersembunyi = password.type === "password";
+
+      password.type = sedangTersembunyi ? "text" : "password";
+
+      this.innerHTML = sedangTersembunyi
+        ? '<i class="fa-solid fa-eye-slash"></i>'
+        : '<i class="fa-solid fa-eye"></i>';
+
+      this.setAttribute(
+        "aria-label",
+        sedangTersembunyi ? "Sembunyikan password" : "Tampilkan password"
+      );
+    });
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      message.className = "message";
+      message.textContent = "";
+
+      if (
+        username.value.trim() === USERNAME_BENAR &&
+        password.value === PASSWORD_BENAR
+      ) {
+        message.className = "message success";
+        message.innerHTML =
+          '<i class="fa-solid fa-circle-check"></i> Login berhasil! Mengalihkan halaman...';
+
+        loginBtn.disabled = true;
+        loginBtn.innerHTML =
+          '<i class="fa-solid fa-spinner fa-spin"></i> Memproses...';
+
+        setTimeout(function () {
+          window.location.href = HALAMAN_TUJUAN;
+        }, 700);
+      } else {
+        message.className = "message error";
+        message.innerHTML =
+          '<i class="fa-solid fa-circle-exclamation"></i> Username atau password salah. Silakan coba lagi.';
+
+        password.value = "";
+        password.focus();
+      }
+    });
+  </script>
+</body>
+</html>

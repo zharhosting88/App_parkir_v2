@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <title>apk parkir - digital</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;600&display=swap">
+  <style>
+    :root {
+      --bg: #080c18;
+      --card: rgba(17, 24, 43, 0.88);
+      --primary: #6366f1;
+      --secondary: #8b5cf6;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --border: rgba(148, 163, 184, 0.16);
+    }
+    
+    body::before{ 
+        content: ""; 
+        position: fixed; inset: 0;
+        z-index: -1;
+        background:
+        radial-gradient(ellipse at 15% 15%, #312e8138, transparent 40%),
+        radial-gradient(ellipse at 85% 85%, #7c3aed26, transparent 40%),
+        var(--bg);
+    }
+    body { margin:0; max-height:50%;justify-content:center; background:
+        radial-gradient(ellipse at 15% 15%, #312e8138, transparent 40%),
+        radial-gradient(ellipse at 85% 85%, #7c3aed26, transparent 40%),
+        var(--bg);}
+    header { border-bottom:none; background-image:url('https://i.imgur.com/SpSkvE8.jpeg'); background-position: center; background-color: rgba(0,0,0,.6);
+    background-blend-mode: multiply; background-size: cover; color: white; text-align: center; padding: 48px 20px; }
+    h3{ letter-spacing:2px; margin-bottom: 0;font-family: 'Orbitron', cursive;}
+    nav {border-top:none; display: flex; justify-content: center; gap: 30px; margin-top: 0; padding: 10px; background-image:url('https://i.imgur.com/SpSkvE8.jpeg'); background-position: bottom; background-color: rgba(0,0,0,.6);
+    background-blend-mode: multiply; background-size: cover; }
+    nav a { text-decoration: none; color: #38bdf8; font-weight: bold; font-family:'Orbitron', sans-serif; }
+    nav a:hover { text-decoration: underline; }
+    .card { width: 80%; max-width: 380px; margin: 50% auto; padding: 10px; border-radius: 24px; text-align: center; }
+    .card marquee { display: flex; justify-content: center; align-items: center; height: 60px; font-family: 'Orbitron', sans-serif; color: #38bdf8; font-size: 30px; letter-spacing: 2px;}
+    footer{width: 90%;margin:10px auto; padding: 15px 0; text-align: center; background-color: rgba(0,0,0,.6); backdrop-filter: blur(6px); color: #5ab8ff; font-family: 'Orbitron', sans-serif;
+    font-size: 13px; letter-spacing: 1px; border-top: 1px solid rgba(0, 170, 255, 0.5); border-radius: 35px; box-shadow: 0 -0px 15px rgba(0, 150, 255, 0.5);}    
+    footer p {line-height:2.0px;font-family: 'Orbitron', sans-serif;}
+</style>
+</head>
+<body>
+  <header>
+    <h3>PARKIR - DIGITAL</h3>
+  </header>
+  <nav>
+    <a href="home_p.html">HOME</a>
+    <a href="Login.html">INPUT DATA</a>
+    <a href="lihat_data_p.html">LIHAT DATA</a>
+  </nav>
+  <div class="card">
+  <marquee>welcome to app parkir</marquee>
+  </div>
+  <footer>
+    <p>aplikasi parkir digital</p>
+    <p>copyright@Rpl-Tp2026</p>
+  </footer>
+</body>
+</html>

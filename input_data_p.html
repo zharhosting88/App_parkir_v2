@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<title>Input Data - Parkir Digital</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+  box-sizing:border-box;
+}
+:root {
+      --bg: #080c18;
+      --card: rgba(17, 24, 43, 0.88);
+      --primary: #6366f1;
+      --secondary: #8b5cf6;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --border: rgba(148, 163, 184, 0.16);
+    }
+    body::before{ content: ""; position: fixed; inset: 0; background:
+        radial-gradient(ellipse at 15% 15%, #312e8138, transparent 40%),
+        radial-gradient(ellipse at 85% 85%, #7c3aed26, transparent 40%),
+        var(--bg); z-index: -1;}
+
+body{
+  margin:0;
+  font-family:Poppins,sans-serif;
+  background:
+        radial-gradient(ellipse at 15% 15%, #312e8138, transparent 40%),
+        radial-gradient(ellipse at 85% 85%, #7c3aed26, transparent 40%),
+        var(--bg);
+  color:#fff;
+  min-height:100vh;
+}
+
+header{
+  background-image:url('https://i.imgur.com/jU0TbPD.jpeg'); background-position: center; background-color: rgba(0,0,0,.6);
+  background-blend-mode: multiply; background-size: cover;
+  position:sticky;
+  top:0;
+  z-index:10;
+  padding:25px;
+  text-align:center;
+  border-bottom:1px solid rgba(255,255,255,.05);
+  font-family:Orbitron,sans-serif;
+}
+
+header h2{
+  margin:0;
+  font-size:20px;
+  letter-spacing:2px;
+}
+
+.hamburger{
+  position:absolute;
+  top:14px;
+  right:14px;
+  font-size:24px;
+  cursor:pointer;
+  background:#0f172a;
+  padding:8px 14px;
+  border-radius:12px;
+}
+
+#overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  z-index:9;
+}
+
+#sideNav{
+  position:fixed;
+  top:0;
+  right:-270px;
+  width:260px;
+  height:100%;
+  background:#020617;
+  padding:20px;
+  transition:.35s ease;
+  z-index:10;
+  border-left:1px solid rgba(255,255,255,.05);
+}
+
+#sideNav button{
+  display:block;
+  width:100%;
+  margin:10px 0;
+  padding:12px;
+  background:#0f172a;
+  border:none;
+  color:#38bdf8;
+  text-align:left;
+  border-radius:12px;
+  font-size:14px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+#sideNav button:hover{
+  background:#1e293b;
+}
+
+.card{
+  width:92%;
+  max-width:420px;
+  margin:30px auto;
+  background:rgba(15,23,42,.95);
+  padding:22px;
+  border-radius:22px;
+  box-shadow:0 15px 40px rgba(0,0,0,.5);
+}
+
+.placeholder{
+  text-align:center;
+  opacity:.7;
+  font-size:14px;
+}
+
+form{
+  display:none;
+}
+
+form.active{
+  display:block;
+}
+
+form h3{
+  text-align:center;
+  margin-bottom:14px;
+  font-weight:600;
+  letter-spacing:1px;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:14px;
+  border:none;
+  outline:none;
+  background:#020617;
+  color:#fff;
+  font-size:14px;
+}
+
+input::placeholder{
+  color:#94a3b8;
+}
+
+input:focus{
+  outline:2px solid #38bdf8;
+}
+
+.btn-wrap{
+  display:flex;
+  gap:12px;
+  margin-top:14px;
+}
+
+button.save,
+button.reset{
+  flex:1;
+  padding:12px;
+  border:none;
+  border-radius:14px;
+  font-weight:600;
+  cursor:pointer;
+  font-size:14px;
+}
+
+button.save{
+  background:#22c55e;
+  color:#fff;
+}
+
+button.reset{
+  background:#ef4444;
+  color:#fff;
+}
+  nav {border-top:none; display: flex; justify-content: center; gap: 30px; margin-top: 0; padding: 8px; background:rgba(255,255,255,.08); background-position: bottom; background-color: rgba(0,0,0,.6);
+    background-blend-mode: multiply; background-size: cover; font-family:'Orbitron', Poppins; }
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>PARKIR DIGITAL</h2>
+  <div class="hamburger" onclick="openNav()">☰</div>
+</header>
+  
+  <nav>
+<marquee>HALAMAN INPUT DATA</marquee>
+  </nav>
+
+<div id="overlay" onclick="closeNav()"></div>
+
+<div id="sideNav">
+  <button onclick="location.href='home_p.html'">HOME</button>
+  <button onclick="location.reload()">INPUT DATA</button>
+  <button onclick="showForm('kendaraan')">KENDARAAN</button>
+  <button onclick="showForm('tarif')">TARIF</button>
+  <button onclick="showForm('transaksi')">TRANSAKSI</button>
+  <button onclick="showForm('area')">AREA PARKIR</button>
+  <button onclick="location.href='lihat_data_p.html'">LIHAT DATA</button>
+  <button onclick="location.href='Login.html'">LOGOUT</button>
+  <button onclick="location.href='https://wa.me/6285811570814'"><i class="fa-brands fa-whatsapp"></i> DEVELOPER</button>
+</div>
+
+<div class="card">
+  <div id="kosong" class="placeholder">Silakan pilih menu input data</div>
+
+  <form id="kendaraan">
+    <h3>Kendaraan</h3>
+    <input id="idKendaraan" placeholder="ID Kendaraan">
+    <input id="plat" placeholder="Plat Nomor">
+    <input id="jenis" placeholder="Jenis">
+    <input id="warna" placeholder="Warna">
+    <input id="pemilik" placeholder="Pemilik">
+    <div class="btn-wrap">
+      <button class="save" type="submit" onclick="saveKendaraan(event)">INPUT</button>
+      <button class="reset" type="reset">RESET</button>
+    </div>
+  </form>
+  
+  <form id="transaksi">
+  <h3>Transaksi Parkir</h3>
+  <input id="idParkir" placeholder="ID Parkir">
+  <input id="idKendaraanTrx" placeholder="ID Kendaraan">
+  <input type="datetime-local" id="masuk">
+  <input type="datetime-local" id="keluar">
+  <input id="idTarifTrx" placeholder="ID Tarif">
+  <input id="durasi" placeholder="Durasi (jam)" >
+  <input id="total" placeholder="Total Biaya" >
+
+  <div class="btn-wrap">
+    <button class="save" type="submit" onclick="saveTransaksi(event)">INPUT</button>
+    <button class="reset" type="reset">RESET</button>
+  </div>
+</form>
+  
+  <form id="tarif">
+  <h3>Tarif Parkir</h3>
+  <input id="idTarif" placeholder="ID Tarif">
+  <input id="jenisTarif" placeholder="Jenis Kendaraan">
+  <input id="tarifJam" placeholder="Tarif / Jam">
+
+  <div class="btn-wrap">
+    <button class="save" type="submit" onclick="saveTarif(event)">INPUT</button>
+    <button class="reset" type="reset">RESET</button>
+  </div>
+</form>
+  
+  <form id="area">
+  <h3>Area Parkir</h3>
+  <input id="idArea" placeholder="ID Area">
+  <input id="namaArea" placeholder="Nama Area">
+  <input id="kapasitas" placeholder="Kapasitas">
+  <input id="terisi" placeholder="Terisi">
+
+  <div class="btn-wrap">
+    <button class="save" type="submit" onclick="saveArea(event)">INPUT</button>
+    <button class="reset" type="reset">RESET</button>
+  </div>
+</form>
+</div>
+
+<script>
+function openNav(){
+  sideNav.style.right="0";
+  overlay.style.display="block";
+}
+function closeNav(){
+  sideNav.style.right="-260px";
+  overlay.style.display="none";
+}
+function showForm(id){
+  kosong.style.display="none";
+  document.querySelectorAll("form").forEach(f=>f.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  closeNav();
+}
+function saveKendaraan(e){
+  e.preventDefault();
+  let data=JSON.parse(localStorage.getItem("kendaraan"))||[];
+  data.push({
+    id:idKendaraan.value,
+    plat:plat.value,
+    jenis:jenis.value,
+    warna:warna.value,
+    pemilik:pemilik.value
+  });
+  localStorage.setItem("kendaraan",JSON.stringify(data));
+  alert("Data kendaraan disimpan");
+}
+  function saveTransaksi(e){
+  e.preventDefault();
+
+  let idParkirVal   = idParkir.value;
+  let idKendVal     = idKendaraanTrx.value;
+  let masukVal      = masuk.value;
+  let keluarVal     = keluar.value;
+  let idTarifVal    = idTarifTrx.value;
+  let durasiVal     = durasi.value;
+  let totalVal      = total.value;
+
+  if(!idParkirVal || !idKendVal || !masukVal || !keluarVal || !idTarifVal){
+    alert("Data transaksi belum lengkap");
+    return;
+  }
+
+  let tMasuk  = new Date(masukVal);
+  let tKeluar = new Date(keluarVal);
+  let selisih = (tKeluar - tMasuk) / (1000 * 60 * 60);
+  let durasiJam = Math.ceil(selisih);
+
+  if(durasiJam <= 0){
+    alert("Waktu keluar harus lebih besar");
+    return;
+  }
+
+  let dataTarif = JSON.parse(localStorage.getItem("tarif")) || [];
+  let tarifDipilih = dataTarif.find(t => t.id === idTarifVal);
+
+  if(!tarifDipilih){
+    alert("ID Tarif tidak ditemukan");
+    return;
+  }
+
+  let totalBiaya = durasiJam * Number(tarifDipilih.tarif);
+
+  durasi.value = durasiJam + " jam";
+  total.value  = "Rp " + totalBiaya.toLocaleString("id-ID");
+
+  let transaksi = JSON.parse(localStorage.getItem("transaksi")) || [];
+  transaksi.push({
+    id_parkir: idParkirVal,
+    id_kendaraan: idKendVal,
+    waktu_masuk: masukVal,
+    waktu_keluar: keluarVal,
+    id_tarif: idTarifVal,
+    durasi: durasiJam,
+    total: totalBiaya
+  });
+
+  localStorage.setItem("transaksi", JSON.stringify(transaksi));
+
+  alert("Transaksi parkir berhasil disimpan");
+}
+ function saveTarif(e){
+  e.preventDefault();
+  let data = JSON.parse(localStorage.getItem("tarif")) || [];
+  data.push({
+    id:idTarif.value,
+    jenis:jenisTarif.value,
+    tarif:tarifJam.value
+  });
+  localStorage.setItem("tarif",JSON.stringify(data));
+  alert("Tarif disimpan");
+}
+
+function saveArea(e){
+  e.preventDefault();
+  let data = JSON.parse(localStorage.getItem("area")) || [];
+  data.push({
+    id:idArea.value,
+    nama:namaArea.value,
+    kapasitas:kapasitas.value,
+    terisi:terisi.value
+  });
+  localStorage.setItem("area",JSON.stringify(data));
+  alert("Area parkir disimpan");
+}
+</script>
+
+</body>
+</html>
